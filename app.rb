@@ -1,6 +1,8 @@
 require 'sinatra/base'
 require 'shotgun'
 require './lib/player'
+require './lib/game'
+require 'attack'
 
 #set :session_secret, 'super secret'
 
@@ -18,23 +20,26 @@ class Battle < Sinatra::Base
     end
 
     post '/names' do
-        $player_1 = Player.new(params[:player_1_name])
-        $player_2 = Player.new(params[:player_2_name])
+        player_1 = Player.new(params[:player_1_name])
+        player_2 = Player.new(params[:player_2_name])
+        $game = Game.new(player_1, player_2)
         redirect '/play'
     end
 
     get '/play' do
-        @player_1_name = $player_1.name
-        @player_2_name = $player_2.name
+        @game = $game
         erb :play
     end
 
-    get '/attacked' do
-        @player_1 = $player_1
-        @player_2 = $player_2
-        @player_1.attack(@player_2)
-        erb :attacked
+    get '/attack' do
+        @game = $game
+        Attack.run(@game.opponent_of(@game.current_turn))
+        erb :attack
+    end
 
+    post '/switch-turns' do
+        $game.switch_turns
+        redirect('/play')
     end
 
 end

@@ -12,12 +12,12 @@ describe Player do
       expect(harry_p.hp).to eq Player::DEFAULT_HIT_POINTS
     end
 
-    it 'damages a player' do
-      expect { voldie_m.receive_damage }.to change{ voldie_m.hp }.by(-Player::DEFAULT_DAMAGE)
-    end
+    # it 'damages a player' do
+    #   expect { voldie_m.receive_damage }.to change{ voldie_m.hp }.by(-Player::DEFAULT_DAMAGE)
+    # end
 
-    it 'harry meekly attacks voldie' do
-      expect { harry_p.attack(voldie_m) }.to change{ voldie_m.hp }.by(-Player::DEFAULT_DAMAGE)
-    end
+    # it 'harry meekly attacks voldie' do
+    #   expect { harry_p.attack(voldie_m) }.to change{ voldie_m.hp }.by(-Player::DEFAULT_DAMAGE)
+    # end
 
 end
