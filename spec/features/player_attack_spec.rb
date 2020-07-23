@@ -7,8 +7,7 @@ feature 'player 1 attack confirmation' do
 
     scenario 'player 2 attacks player 1' do
         sign_in_and_play
-        click_button "Attack!"
-        click_button "OK"
+        attack_and_confirm
         click_button "Attack!"
         expect(page).to have_content "Voldie M attacked Harry P! Harry P's HP has been reduced to 90"
     end
