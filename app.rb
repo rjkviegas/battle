@@ -2,7 +2,7 @@ require 'sinatra/base'
 require 'shotgun'
 require './lib/player'
 require './lib/game'
-require 'attack'
+require './lib/attack'
 
 #set :session_secret, 'super secret'
 

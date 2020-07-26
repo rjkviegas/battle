@@ -2,9 +2,10 @@ require './lib/game'
 
 describe Game do
     subject(:game) { described_class.new(player_1, player_2) }
-    let(:player_1) { double :player }
-    let(:player_2) { double :player }
-
+    subject(:finished_game) { described_class.new(dead_player, player_2) }
+    let(:player_1) { double :player, hp: 100  }
+    let(:player_2) { double :player, hp: 100 }
+    let(:dead_player) { double :player, hp: 0 }
 
     describe '#player_1' do
         it 'retrieves the first player' do
@@ -30,4 +31,12 @@ describe Game do
             expect(game.current_turn).to eq(player_2)
         end
     end
+
+    describe '#game_over?' do
+        it 'returns false if neither player is at 0 hp' do
+            expect(game.game_over?).to be false
+        end
+    end
+
+
 end
